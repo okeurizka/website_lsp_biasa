@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\PesertaController;
+use App\Http\Controllers\PesertaLspController;
 
 Route::post('/daftar-lsp', [PesertaLspController::class, 'store'])->name('peserta.store');
 
