@@ -121,6 +121,29 @@
             {{ session('success') }}
         </div>
     @endif
+
+    <script>
+        function toggleMobileMenu() {
+            const mobileMenu = document.getElementById('mobile-menu');
+            if (mobileMenu) {
+                mobileMenu.classList.toggle('hidden');
+
+                // Optional: Kalo menu utama ditutup, pastiin sub-menu juga nutup
+                if (mobileMenu.classList.contains('hidden')) {
+                    const profilSubmenu = document.getElementById('mobile-profil-submenu');
+                    const skemaSubmenu = document.getElementById('mobile-skema-submenu');
+                    if (profilSubmenu) profilSubmenu.classList.add('hidden');
+                    if (skemaSubmenu) skemaSubmenu.classList.add('hidden');
+                }
+            }
+        }
+
+        // Fungsi untuk toggle sub-menu (dipakai di mobile-menu HTML)
+        function toggleSubmenu(id) {
+            document.getElementById(id).classList.toggle('hidden');
+        }
+    </script>
+
 </head>
 
 <body class="bg-white">
@@ -128,7 +151,6 @@
     <!-- NAVBAR (keamanan: dropdown di-hover & link clickable) -->
     <nav class="bg-maroon shadow-md fixed top-0 w-full text-white z-50">
         <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
-            <!-- logo -->
             <div class="flex items-center gap-3">
                 <img src="{{ asset('images/logo-fix.png') }}" alt="logo" class="w-11 h-11">
                 <div>
@@ -137,25 +159,31 @@
                 </div>
             </div>
 
-            <!-- menu -->
-            <div class="flex items-center gap-6 font-medium">
+            <button id="menu-button" class="lg:hidden text-white hover:text-gold focus:outline-none p-2"
+                onclick="toggleMobileMenu()">
+                <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16">
+                    </path>
+                </svg>
+            </button>
+
+            <div class="hidden lg:flex items-center gap-6 font-medium">
                 <a href="/" class="hover:text-gold transition">Home</a>
 
-                <!-- PROFIL dropdown (keamanan: group + dropdown-menu absolute) -->
                 <div class="relative group">
                     <a href="/profil" class="flex items-center gap-1 hover:text-gold transition">
                         Profil <span class="text-sm">▼</span>
                     </a>
 
                     <div
-                        class="dropdown-menu absolute right-0 mt-3 bg-white text-black rounded-md shadow-lg opacity-0 pointer-events-none transform scale-95 transition-all duration-200 group-hover:opacity-100 group-hover:pointer-events-auto group-hover:scale-100">
+                        class="dropdown-menu absolute right-0 mt-3 bg-white text-black rounded-md shadow-lg opacity-0 pointer-events-none transform scale-95 transition-all duration-200 group-hover:opacity-100 group-hover:pointer-events-auto group-hover:scale-100 min-w-[12rem]">
                         <a href="/profil/visi-misi" class="block px-4 py-2 hover:bg-gray-100">Visi & Misi</a>
                         <a href="/profil/struktur" class="block px-4 py-2 hover:bg-gray-100">Struktur Organisasi</a>
                         <a href="/profil/alur-uji" class="block px-4 py-2 hover:bg-gray-100">Alur Uji Kompetensi</a>
                     </div>
                 </div>
 
-                <!-- S K E M A dropdown -->
                 <div class="relative group">
                     <button class="flex items-center gap-1 hover:text-gold transition">
                         Daftar Skema Sertifikasi <span class="text-sm">▼</span>
@@ -179,11 +207,56 @@
 
                 <a href="/hubungi-kami" class="hover:text-gold transition">Hubungi Kami</a>
 
-                <!-- auth -->
                 <div class="flex items-center gap-3">
                     <a href="/daftar"
                         class="px-4 py-2 rounded bg-gradient-to-r from-[#D4AF37] to-[#F3E18C] text-[#8B0000] font-semibold">Daftar</a>
                 </div>
+            </div>
+        </div>
+
+        <div id="mobile-menu" class="hidden lg:hidden bg-maroon/95 pb-4">
+            <a href="/" class="block px-6 py-2 hover:bg-maroon/80 transition">Home</a>
+
+            <div class="group relative">
+                <button
+                    class="flex items-center justify-between w-full px-6 py-2 hover:bg-maroon/80 transition text-left"
+                    onclick="document.getElementById('mobile-profil-submenu').classList.toggle('hidden')">
+                    Profil <span>▼</span>
+                </button>
+                <div id="mobile-profil-submenu" class="hidden bg-maroon/70">
+                    <a href="/profil/visi-misi" class="block px-10 py-2 hover:bg-maroon/60">Visi & Misi</a>
+                    <a href="/profil/struktur" class="block px-10 py-2 hover:bg-maroon/60">Struktur Organisasi</a>
+                    <a href="/profil/alur-uji" class="block px-10 py-2 hover:bg-maroon/60">Alur Uji Kompetensi</a>
+                </div>
+            </div>
+
+            <div class="group relative">
+                <button
+                    class="flex items-center justify-between w-full px-6 py-2 hover:bg-maroon/80 transition text-left"
+                    onclick="document.getElementById('mobile-skema-submenu').classList.toggle('hidden')">
+                    Daftar Skema Sertifikasi <span>▼</span>
+                </button>
+                <div id="mobile-skema-submenu" class="hidden bg-maroon/70 max-h-60 overflow-y-auto">
+                    <a href="/rpl" class="block px-10 py-2 hover:bg-maroon/60">Rekayasa Perangkat Lunak</a>
+                    <a href="/tkj" class="block px-10 py-2 hover:bg-maroon/60">Teknik Komputer & Jaringan</a>
+                    <a href="/dkv" class="block px-10 py-2 hover:bg-maroon/60">Desain Komunikasi Visual</a>
+                    <a href="/mkt" class="block px-10 py-2 hover:bg-maroon/60">Teknik Mekatronik</a>
+                    <a href="/tpm" class="block px-10 py-2 hover:bg-maroon/60">Teknik Pemesinan</a>
+                    <a href="/tl" class="block px-10 py-2 hover:bg-maroon/60">Teknik Pengelasan</a>
+                    <a href="/tkr" class="block px-10 py-2 hover:bg-maroon/60">Teknik Kendaraan Ringan</a>
+                    <a href="/tbkr" class="block px-10 py-2 hover:bg-maroon/60">Teknik Bodi Kendaraan Ringan</a>
+                    <a href="/aphp" class="block px-10 py-2 hover:bg-maroon/60">Agribisnis Pengolahan Hasil
+                        Pertanian</a>
+                    <a href="/atph" class="block px-10 py-2 hover:bg-maroon/60">Agribisnis Tanaman Pangan &
+                        Hortikultura</a>
+                </div>
+            </div>
+
+            <a href="/hubungi-kami" class="block px-6 py-2 hover:bg-maroon/80 transition">Hubungi Kami</a>
+
+            <div class="px-6 py-2 pt-3">
+                <a href="/daftar"
+                    class="block text-center w-full px-4 py-2 rounded bg-gradient-to-r from-[#D4AF37] to-[#F3E18C] text-[#8B0000] font-semibold">Daftar</a>
             </div>
         </div>
     </nav>
@@ -208,7 +281,8 @@
     <!-- STRUCTURE TITLE -->
     <section class="py-14 text-center">
         <h2 class="text-4xl font-extrabold text-gradient glow scroll-animate">Struktur Pembina & Pengurus</h2>
-        <div class="w-24 h-1 rounded-full mx-auto mt-3" style="background:linear-gradient(90deg,#8B0000,#D4AF37)"></div>
+        <div class="w-24 h-1 rounded-full mx-auto mt-3" style="background:linear-gradient(90deg,#8B0000,#D4AF37)">
+        </div>
         <p class="text-gray-600 mt-4 max-w-2xl mx-auto scroll-animate">Komite dan pembina bekerja sama dengan Dunia
             Usaha / Dunia Industri untuk menjaga mutu sertifikasi.</p>
     </section>
@@ -356,7 +430,7 @@
                     <div class="flex space-x-6 text-white text-lg font-semibold">
                         <a href="/" class="hover:underline">Beranda</a>
                         <a href="/hubungi-kami" class="hover:underline">Hubungi Kami</a>
-                        <a href="/berita-terkini" class="hover:underline">Berita Terkini</a>
+                        <a href="{{ route('news.index') }}" class="hover:underline">Berita Terkini</a>
                     </div>
 
                     <!-- Media Sosial horizontal di bawah navigasi -->
