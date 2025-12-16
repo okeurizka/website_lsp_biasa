@@ -6,7 +6,6 @@
 
 <!-- HEADER DENGAN ANIMASI -->
 <section class="py-14 bg-white text-center">
-
     <div class="inline-block opacity-0 animate-fadeUp">
         <h1 class="text-4xl font-extrabold text-[#800000] tracking-wide">
             Struktur Organisasi
@@ -18,95 +17,47 @@
             SMK Negeri 1 Purwosari – Pasuruan, Jawa Timur
         </p>
     </div>
-
 </section>
 
+<!-- KONTEN UTAMA -->
+<section class="pb-24">
+    <div class="max-w-7xl mx-auto px-6 md:px-10 lg:px-16">
+
         <!-- ===== KEPALA SEKOLAH ===== -->
-        <div class="text-center mb-16">
-            <img src="{{ asset('images/kepala-sekolah.png') }}" 
+        <div class="text-center mb-20">
+            <img src="{{ asset('images/anon.png') }}"
                  class="w-40 h-40 rounded-full object-cover mx-auto border-4 border-[#7A1F1F] shadow-xl">
             <h2 class="mt-5 text-2xl font-bold text-[#7A1F1F]">Nama Kepala Sekolah</h2>
             <p class="text-[#7A1F1F]/80 font-medium">Kepala Sekolah</p>
         </div>
 
-
         <!-- ===== GRID STRUKTUR ===== -->
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
 
-            <!-- ITEM 1 -->
-            <div class="bg-white rounded-2xl p-6 shadow-xl border-t-4 border-[#7A1F1F]">
-                <img src="{{ asset('images/struktur1.png') }}"
-                     class="w-32 h-32 rounded-full object-cover mx-auto border-4 border-[#E5B700] shadow-md">
-                <h3 class="mt-4 text-xl font-bold text-[#7A1F1F]">Nama Lengkap</h3>
-                <p class="text-[#7A1F1F]/80 font-medium">Wakil Kepala Sekolah Bidang Kurikulum</p>
-            </div>
+            @php
+                $jabatan = [
+                    'Wakil Kepala Sekolah Bidang Kurikulum',
+                    'Wakil Kepala Sekolah Bidang Kesiswaan',
+                    'Wakil Kepala Sekolah Bidang Sarpras',
+                    'Wakil Kepala Sekolah Bidang Humas',
+                    'Kepala Tata Usaha',
+                    'Koordinator Bursa Kerja Khusus',
+                    'Koordinator Prakerin / PKL',
+                    'Koordinator Ekstrakurikuler',
+                    'Koordinator Perpustakaan',
+                ];
+            @endphp
 
-            <!-- ITEM 2 -->
-            <div class="bg-white rounded-2xl p-6 shadow-xl border-t-4 border-[#7A1F1F]">
-                <img src="{{ asset('images/struktur2.png') }}"
+            @foreach ($jabatan as $j)
+            <div class="bg-white rounded-2xl p-6 shadow-xl border-t-4 border-[#7A1F1F] text-center">
+                <img src="{{ asset('images/anon.png') }}"
                      class="w-32 h-32 rounded-full object-cover mx-auto border-4 border-[#E5B700] shadow-md">
                 <h3 class="mt-4 text-xl font-bold text-[#7A1F1F]">Nama Lengkap</h3>
-                <p class="text-[#7A1F1F]/80 font-medium">Wakil Kepala Sekolah Bidang Kesiswaan</p>
+                <p class="text-[#7A1F1F]/80 font-medium">{{ $j }}</p>
             </div>
-
-            <!-- ITEM 3 -->
-            <div class="bg-white rounded-2xl p-6 shadow-xl border-t-4 border-[#7A1F1F]">
-                <img src="{{ asset('images/struktur3.png') }}"
-                     class="w-32 h-32 rounded-full object-cover mx-auto border-4 border-[#E5B700] shadow-md">
-                <h3 class="mt-4 text-xl font-bold text-[#7A1F1F]">Nama Lengkap</h3>
-                <p class="text-[#7A1F1F]/80 font-medium">Wakil Kepala Sekolah Bidang Sarpras</p>
-            </div>
-
-            <!-- ITEM 4 -->
-            <div class="bg-white rounded-2xl p-6 shadow-xl border-t-4 border-[#7A1F1F]">
-                <img src="{{ asset('images/struktur4.png') }}"
-                     class="w-32 h-32 rounded-full object-cover mx-auto border-4 border-[#E5B700] shadow-md">
-                <h3 class="mt-4 text-xl font-bold text-[#7A1F1F]">Nama Lengkap</h3>
-                <p class="text-[#7A1F1F]/80 font-medium">Wakil Kepala Sekolah Bidang Humas</p>
-            </div>
-
-            <!-- ITEM 5 -->
-            <div class="bg-white rounded-2xl p-6 shadow-xl border-t-4 border-[#7A1F1F]">
-                <img src="{{ asset('images/struktur5.png') }}"
-                     class="w-32 h-32 rounded-full object-cover mx-auto border-4 border-[#E5B700] shadow-md">
-                <h3 class="mt-4 text-xl font-bold text-[#7A1F1F]">Nama Lengkap</h3>
-                <p class="text-[#7A1F1F]/80 font-medium">Kepala Tata Usaha</p>
-            </div>
-
-            <!-- ITEM 6 -->
-            <div class="bg-white rounded-2xl p-6 shadow-xl border-t-4 border-[#7A1F1F]">
-                <img src="{{ asset('images/struktur6.png') }}"
-                     class="w-32 h-32 rounded-full object-cover mx-auto border-4 border-[#E5B700] shadow-md">
-                <h3 class="mt-4 text-xl font-bold text-[#7A1F1F]">Nama Lengkap</h3>
-                <p class="text-[#7A1F1F]/80 font-medium">Koordinator Bursa Kerja Khusus</p>
-            </div>
-
-            <!-- ITEM 7 -->
-            <div class="bg-white rounded-2xl p-6 shadow-xl border-t-4 border-[#7A1F1F]">
-                <img src="{{ asset('images/struktur7.png') }}"
-                     class="w-32 h-32 rounded-full object-cover mx-auto border-4 border-[#E5B700] shadow-md">
-                <h3 class="mt-4 text-xl font-bold text-[#7A1F1F]">Nama Lengkap</h3>
-                <p class="text-[#7A1F1F]/80 font-medium">Koordinator Prakerin / PKL</p>
-            </div>
-
-            <!-- ITEM 8 -->
-            <div class="bg-white rounded-2xl p-6 shadow-xl border-t-4 border-[#7A1F1F]">
-                <img src="{{ asset('images/struktur8.png') }}"
-                     class="w-32 h-32 rounded-full object-cover mx-auto border-4 border-[#E5B700] shadow-md">
-                <h3 class="mt-4 text-xl font-bold text-[#7A1F1F]">Nama Lengkap</h3>
-                <p class="text-[#7A1F1F]/80 font-medium">Koordinator Ekstrakurikuler</p>
-            </div>
-
-            <!-- ITEM 9 -->
-            <div class="bg-white rounded-2xl p-6 shadow-xl border-t-4 border-[#7A1F1F]">
-                <img src="{{ asset('images/struktur9.png') }}"
-                     class="w-32 h-32 rounded-full object-cover mx-auto border-4 border-[#E5B700] shadow-md">
-                <h3 class="mt-4 text-xl font-bold text-[#7A1F1F]">Nama Lengkap</h3>
-                <p class="text-[#7A1F1F]/80 font-medium">Koordinator Perpustakaan</p>
-            </div>
+            @endforeach
 
         </div>
-
     </div>
 </section>
 
