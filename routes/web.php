@@ -1,7 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\PesertaController;
+use App\Http\Controllers\PesertaLspController;
+use App\Http\Controllers\Admin\NewsController;
 
 Route::post('/daftar-lsp', [PesertaLspController::class, 'store'])->name('peserta.store');
 
@@ -21,9 +22,7 @@ Route::get('/hubungi-kami', function () {
 })->name('hubungi-kami');
 
 //Halaman Berita-terkini
-Route::get('/berita-terkini', function () {
-    return view('berita-terkini');
-})->name('berita-terkini');
+Route::resource('admin/news', NewsController::class);
 
 //Halaman Jurusan
 Route::get('/rpl', function () {

@@ -12,7 +12,13 @@ class news extends Model
      * Ini penting agar NewsController dapat menyimpan data dari form.
      *
      * @var array<int, string>
+     
+        * @return string
      */
+    public function getRouteKeyName()
+    {
+        return 'slug'; // <-- TAMBAHKAN INI
+    }
     protected $fillable = [
         'title',
         'slug',

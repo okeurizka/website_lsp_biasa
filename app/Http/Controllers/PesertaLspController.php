@@ -7,6 +7,7 @@ use App\Models\PesertaLsp;
 
 class PesertaLspController extends Controller
 {
+
     public function store(Request $request)
     {
         $validated = $request->validate([
